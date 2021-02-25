@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<title>格式化excel数据</title>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/ldld.min.css">
+<link rel="stylesheet" type="text/css" href="./css/index.css">
+<body>
+	<div id="figureApp">
+		<header>
+			<h3 class="title">格式化excel数据</h3>
+		</header>
+		<div class="import-btn-bg">
+			<button class="import-btn">导入
+				<input class="import-input" type="file" multiple name="xlfile" @change="importExcelFile(this)">
+			</button>
+		</div>
+	    <div class="sheet-name-list">
+	    	<v-select :placeholder="placeholder" 
+              multiple 
+              :options="options"
+              label="name"
+              @input="selecte_sheet_name"
+              :value.sync="sheet_name_list"></v-select>
+	    </div>
+		<div class="export-btn-bg">
+			<button class="export-btn" @click="export_sheet" disabled="disabled">导出</button>
+		</div>
+		<div class="information-bg">
+			<div>
+				<label>请输入excel名:</label>
+				<input type="text" name="excelname" placeholder="导出.xlsx" v-model="export_excel_name">
+			</div>
+			<div>
+				<label>请输入sheet名:</label>
+				<input type="text" name="sheetname" placeholder="sheet1" value="sheet1" v-model="export_sheet_name">
+			</div>
+		</div>
+		<div class="imported-files">已导入{{ file_number }}个文件</div>
+		<div class="loading-bg" v-bind:class="{loading: isLoading}">
+			<img id="bean-loader" class="ldld" v-bind:class="{running: isLoading}" src="./img/bean.gif">
+		</div>
+	</div>
+	<script type="text/javascript" src="./libs/vue.js"></script>
+	<script type="text/javascript" src="./libs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="./libs/xlsx.full.min.js"></script>
+	<script type="text/javascript" src="./libs/vue-select.js"></script>
+	<script type="text/javascript" src="./libs/ldld.min.js"></script>
+	<script type="text/javascript" src="./js/importExcel.js"></script>
+	<script type="text/javascript" src="./js/index.js"></script>
+</body>
+</html>
